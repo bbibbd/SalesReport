@@ -5,6 +5,7 @@ public class SalesReporter {
 	private double highestSales=0, averageSales;
 	private int numberOfAssociate;
 	private SalesAssociate [] team;
+	private String nameOfHighestSales;
 	int sum=0;
 
 	
@@ -17,7 +18,7 @@ public class SalesReporter {
 		team = new SalesAssociate[numberOfAssociate];
 
 		for(int i=0; i<numberOfAssociate; i++) {
-			team[i]=new SalesAssociate();
+			team[i]=new SalesAssociate(); //MUST INSTANTIATE EACH ARRAY
 			System.out.printf("Enter data for associate #%d\n",i+1);
 			System.out.println("Enter name: ");
 			team[i].setName(keyboard.next());
@@ -38,12 +39,15 @@ public class SalesReporter {
 		double temp;
 		for(int i=0;i<numberOfAssociate;i++) {
 			temp = team[i].getSales();
-			if(highestSales <= temp)	highestSales=temp;			
+			if(highestSales <= temp)	highestSales=temp;		
+			if(team[i].getSales() == highestSales)
+				nameOfHighestSales=team[i].getName();
 		}
 	}
 	
 	public void displayResults() {
 		System.out.printf("Average Sales per person is %.2f\n", averageSales);
-		System.out.printf("Highes sales: %f",highestSales);
+		System.out.printf("Highes sales: %s , %.2f",nameOfHighestSales,highestSales);
+		
 	}
 }
